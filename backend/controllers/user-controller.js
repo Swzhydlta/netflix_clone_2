@@ -42,13 +42,23 @@ const findUserByEmailController = async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
 
-  const { email } = req.body;
+  const { email, password } = req.body;
+  // res.status(200).json({ message: "fetched user" });
 
   try {
-    const user = await findUserByEmail(email);
+    const data = await findUserByEmail(email);
 
-    if (user.Count > 0) {
-      res.status(200).json(user.Items);
+    if (data.Count > 0) {
+      const user = data.Items[0];
+      //check if user.password === password
+      // Check if the passwords match
+      if (user.password === password) {
+        res.status(200).json({ email: user.email });
+      } else {
+        // Passwords do not match
+        res.status(401).json({ message: "Incorrect password" });
+      }
+      // res.status(200).json(user);
     } else {
       res.status(404).json({ message: "User not found" });
     }

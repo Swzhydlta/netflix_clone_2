@@ -1,0 +1,19 @@
+@import "../../styles/variables";
+
+.navbar-wrapper {
+  min-width: 100%;
+  padding: 10px;
+  display: flex;
+
+  .nav-title {
+    background-color: $medium-color-1;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .search-bar {
+    border-radius: 5px;
+    outline: none;
+  }
+}
