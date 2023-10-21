@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div id="app">
-      <Router basename="/">
+      <Router>
         {isAuthenticated && (
           <Navbar setIsAuthenticated={handleAuthentication} />
         )}
