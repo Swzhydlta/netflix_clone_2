@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "./_styles.scss";
-export default function Navbar() {
+interface Props {
+  setIsAuthenticated: (input: boolean) => void;
+}
+export default function Navbar({ setIsAuthenticated }: Props) {
   const navigate = useNavigate();
   const navigateHome = () => {
     navigate("/home");
@@ -11,6 +14,9 @@ export default function Navbar() {
         SHOWREPO
       </div>
       <input type="text" placeholder="search" className="search-bar"></input>
+      <div className="logout-wrapper">
+        <button onClick={() => setIsAuthenticated(false)}>Logout</button>
+      </div>
     </div>
   );
 }

@@ -1,44 +1,40 @@
-import "./App.scss";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login-page/LoginPage";
 import HomePage from "./pages/home-page/HomePage";
 import Navbar from "./components/navbar/Navbar";
 import ShowPage from "./pages/show-page/ShowPage";
+import RootPage from "./pages/root-page/RootPage";
+import "./App.scss";
 
 function App() {
-  const test = async () => {
-    const url = "https://www.episodate.com/api/show-details?q=arrow";
-    const headers = {
-      Accept: "*/*",
-    };
-
-    const options = {
-      method: "GET",
-      headers,
-    };
-    try {
-      const response = await fetch(url, options);
-      const json = await response.json();
-      console.log("json", json);
-    } catch (error) {
-      console.log("error", error);
-    }
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const handleAuthentication = (input: boolean) => {
+    setIsAuthenticated(input);
   };
+
   return (
     <div id="app">
-      <Router>
-        <Navbar />
+      <Router basename="/">
+        {isAuthenticated && (
+          <Navbar setIsAuthenticated={handleAuthentication} />
+        )}
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="home" element={<HomePage />} />
-          <Route path="shows/:show" element={<ShowPage />} />
-
-          {/* <Route path="/about" component={About} /> */}
+          <Route path="/" element={<RootPage />} />
+          <Route
+            path="/login"
+            element={<LoginPage setIsAuthenticated={handleAuthentication} />}
+          />
+          <Route
+            path="home"
+            element={<HomePage isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path="shows/:show"
+            element={<ShowPage isAuthenticated={isAuthenticated} />}
+          />
         </Routes>
       </Router>
-      <div>
-        <button onClick={test}>test</button>
-      </div>
     </div>
   );
 }

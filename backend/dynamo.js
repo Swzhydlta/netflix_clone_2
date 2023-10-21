@@ -19,7 +19,6 @@ const getUsers = async () => {
     TableName: TABLE_NAME,
   };
   const users = await dynamoClient.scan(params).promise();
-  console.log("users", users);
   return users;
 };
 
@@ -43,17 +42,10 @@ const findUserByEmail = async (email) => {
 
   try {
     const user = await dynamoClient.query(params).promise();
-    console.log("user", user);
     return user;
   } catch (error) {
-    console.error("Error finding user by email:", error);
     throw error;
   }
-};
-
-const user = {
-  id: "0",
-  name: "test",
 };
 
 module.exports = {

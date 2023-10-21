@@ -1,0 +1,118 @@
+@import "../../styles/variables";
+
+.show-item-wrapper {
+  display: flex;
+  max-width: 100%;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 0px 20px;
+
+  .viewer-wrapper {
+    // border: 1px solid black;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+
+    .heading-loader-wrapper {
+      display: flex;
+      align-items: center;
+      .spin {
+        animation: spin 2s linear infinite;
+        margin-left: 10px;
+        color: $light-color;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+    .viewer {
+      height: 600px;
+      background-color: $light-color;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & > svg {
+        transform: scale(2.5);
+        cursor: pointer;
+      }
+    }
+
+    .episodes-heading {
+      color: $light-color;
+    }
+
+    .episodes-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      margin-bottom: 20px;
+
+      .episode {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        background-color: $medium-color-1;
+        margin-left: 5px;
+        margin-top: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        .episode-name {
+          margin-top: 5px;
+        }
+
+        .watched-icon-wrapper {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .watched-icon {
+          font-size: 10px;
+          padding: 3px;
+          background-color: $medium-color-2;
+          border-radius: 3px;
+        }
+        .watched-placeholder {
+          height: 10px;
+          padding: 3px;
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+
+  .details-wrapper {
+    display: flex;
+    padding: 20px 20p 0 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    color: $light-color;
+    margin-left: 20px;
+
+    .details-item-large {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .details-item-small {
+      width: 100%;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .show-item-image {
+      width: 100%;
+    }
+  }
+}

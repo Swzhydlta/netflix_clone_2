@@ -1,9 +1,10 @@
 @import "../../styles/variables";
 
 .navbar-wrapper {
-  min-width: 100%;
   padding: 10px;
   display: flex;
+  background-color: $medium-color-2;
+  margin-bottom: 30px;
 
   .nav-title {
     background-color: $medium-color-1;
@@ -14,6 +15,18 @@
   }
   .search-bar {
     border-radius: 5px;
-    outline: none;
+    border: none;
+    padding: 0px 10px;
+  }
+  .logout-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  & button {
+    background-color: $medium-color-1;
+    border: none;
+    border-radius: 5px;
   }
 }

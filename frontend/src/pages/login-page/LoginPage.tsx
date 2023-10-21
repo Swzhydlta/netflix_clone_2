@@ -1,40 +1,42 @@
 import "./_styles.scss";
 import { useState } from "react";
-export default function LoginPage() {
+import { useNavigate } from "react-router-dom";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { userService } from "../../services/userService";
+
+interface Props {
+  setIsAuthenticated: (input: boolean) => void;
+}
+
+export default function LoginPage({ setIsAuthenticated }: Props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const login = async () => {
-    const url =
-      "https://pjditaizu4.execute-api.us-east-1.amazonaws.com/dev/users/get-user";
-    const headers = {
-      Accept: "*/*",
-      "Content-Type": "application/json",
-    };
-
+    setLoading(true);
     const requestData = {
-      // Add your data here
       email: email,
       password: password,
     };
     const requestBody = JSON.stringify(requestData);
-
-    const options = {
-      method: "POST",
-      headers,
-      body: requestBody,
-    };
     try {
-      const response = await fetch(url, options);
-      const json = await response.json();
-      console.log("json", json);
+      const response = await userService.login(requestBody);
+      localStorage.setItem("user", JSON.stringify(response));
+      setIsAuthenticated(true);
+      navigate("/home");
     } catch (error) {
-      console.log("error", error);
+      setLoading(false);
     }
   };
   return (
     <div className="login-wrapper">
       <div className="login-box">
+        <div className="login-header-wrapper">
+          <h2>SHOWREPO</h2>
+        </div>
+
         <input
           type="text"
           placeholder="email"
@@ -45,7 +47,9 @@ export default function LoginPage() {
           placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button onClick={login}>Login</button>
+        <button onClick={login}>
+          {loading ? <AiOutlineLoading3Quarters className="spin" /> : "Login"}
+        </button>
       </div>
     </div>
   );
