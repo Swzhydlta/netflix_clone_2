@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 import LoginPage from "./pages/login-page/LoginPage";
 import HomePage from "./pages/home-page/HomePage";
 import Navbar from "./components/navbar/Navbar";
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div id="app">
-      <Router>
+      <HashRouter>
         {isAuthenticated && (
           <Navbar setIsAuthenticated={handleAuthentication} />
         )}
@@ -34,7 +34,7 @@ function App() {
             element={<ShowPage isAuthenticated={isAuthenticated} />}
           />
         </Routes>
-      </Router>
+      </HashRouter>
     </div>
   );
 }
