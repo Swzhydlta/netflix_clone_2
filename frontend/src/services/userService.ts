@@ -19,7 +19,7 @@ export const userService: UserService = {
       body: data,
     };
     const response = await fetch(
-      "http://localhost:3001/users/update-shows",
+      "https://pjditaizu4.execute-api.us-east-1.amazonaws.com/dev/users/update-shows",
       options
     );
     if (response.ok) {
@@ -37,7 +37,7 @@ export const userService: UserService = {
       body: data,
     };
     const response = await fetch(
-      "http://localhost:3001/users/get-user",
+      "https://pjditaizu4.execute-api.us-east-1.amazonaws.com/dev/users/get-user",
       options
     );
     if (response.ok) {
