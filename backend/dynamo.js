@@ -11,6 +11,8 @@ AWS.config.update({
 //   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 // });
 
+// test change
+
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
 const TABLE_NAME = "user";
 
