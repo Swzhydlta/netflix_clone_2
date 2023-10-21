@@ -12,7 +12,7 @@ backend/node_modules
 backend/.env
 backend/.serverless
 backend/serverless.yml
-dist
+# dist
 dist-ssr
 *.local
 
