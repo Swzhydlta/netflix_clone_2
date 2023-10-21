@@ -37,8 +37,10 @@ export default function ShowPage({ isAuthenticated }: Props) {
 
     const loadShow = async () => {
       try {
-        const response = await showService.fetchSingle(show);
-        setShowToDisplay(response.tvShow);
+        if (show) {
+          const response = await showService.fetchSingle(show);
+          setShowToDisplay(response.tvShow);
+        }
       } catch (error) {
         console.log("error", error);
       }
